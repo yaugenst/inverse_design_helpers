@@ -1,0 +1,28 @@
+[build-system]
+requires = ["flit_core"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "inverse_design_helpers"
+authors = [{ name = "Yannick Augenstein" }]
+description = ""
+license = { file = "LICENSE" }
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dynamic = ["version"]
+requires-python = ">=3.9"
+dependencies = ["numpy", "scipy", "autograd"]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.urls]
+Source = "https://github.com/mrbaozi/inverse_design_helpers"
+
+[tool.pytest.ini_options]
+addopts = "-n 4"
+xfail_strict = true
