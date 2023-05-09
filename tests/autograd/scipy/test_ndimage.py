@@ -118,3 +118,24 @@ def test_fourier_ellipsoid(rng, dim):
     x = rng.random(np.arange(10, 10 + dim))
     size = np.arange(1, 1 + dim)
     check_grads(ndimage.fourier_ellipsoid, modes=["fwd", "rev"], order=2)(x, size)
+
+
+@pytest.mark.parametrize("dim", [1, 2, 3])
+def test_fourier_gaussian(rng, dim):
+    x = rng.random(np.arange(10, 10 + dim))
+    sigma = np.arange(1, 1 + dim)
+    check_grads(ndimage.fourier_gaussian, modes=["fwd", "rev"], order=2)(x, sigma)
+
+
+@pytest.mark.parametrize("dim", [1, 2, 3])
+def test_fourier_uniform(rng, dim):
+    x = rng.random(np.arange(10, 10 + dim))
+    size = np.arange(1, 1 + dim)
+    check_grads(ndimage.fourier_uniform, modes=["fwd", "rev"], order=2)(x, size)
+
+
+@pytest.mark.parametrize("dim", [1, 2, 3])
+def test_fourier_shift(rng, dim):
+    x = rng.random(np.arange(10, 10 + dim))
+    shift = np.arange(1, 1 + dim)
+    check_grads(ndimage.fourier_shift, modes=["fwd", "rev"], order=2)(x, shift)

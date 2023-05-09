@@ -9,8 +9,10 @@ sobel = primitive(scipy.ndimage.sobel)
 uniform_filter = primitive(scipy.ndimage.uniform_filter)
 fourier_ellipsoid = primitive(scipy.ndimage.fourier_ellipsoid)
 fourier_gaussian = primitive(scipy.ndimage.fourier_gaussian)
+fourier_shift = primitive(
+    lambda x, *args, **kwargs: scipy.ndimage.fourier_shift(x, *args, **kwargs).real
+)
 fourier_uniform = primitive(scipy.ndimage.fourier_uniform)
-fourier_shift = primitive(scipy.ndimage.fourier_shift)
 
 defjvp(gaussian_filter, "same")
 defjvp(gaussian_laplace, "same")
@@ -19,6 +21,12 @@ defjvp(prewitt, "same")
 defjvp(sobel, "same")
 defjvp(uniform_filter, "same")
 defjvp(fourier_ellipsoid, "same")
+defjvp(fourier_gaussian, "same")
+defjvp(
+    fourier_shift,
+    lambda g, ans, x, *args, **kwargs: fourier_shift(g, *args, **kwargs),
+)
+defjvp(fourier_uniform, "same")
 
 defvjp(
     gaussian_filter,
@@ -48,18 +56,15 @@ defvjp(
     fourier_ellipsoid,
     lambda ans, x, *args, **kwargs: lambda g: fourier_ellipsoid(g, *args, **kwargs),
 )
-
 defvjp(
     fourier_gaussian,
     lambda ans, x, *args, **kwargs: lambda g: fourier_gaussian(g, *args, **kwargs),
 )
-
-defvjp(
-    fourier_uniform,
-    lambda ans, x, *args, **kwargs: lambda g: fourier_uniform(g, *args, **kwargs),
-)
-
 defvjp(
     fourier_shift,
     lambda ans, x, *args, **kwargs: lambda g: fourier_shift(g, *args, **kwargs),
+)
+defvjp(
+    fourier_uniform,
+    lambda ans, x, *args, **kwargs: lambda g: fourier_uniform(g, *args, **kwargs),
 )
