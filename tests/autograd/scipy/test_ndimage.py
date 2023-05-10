@@ -5,12 +5,6 @@ from autograd.test_util import check_grads
 import inverse_design_helpers.autograd.scipy.ndimage as ndimage
 
 
-@pytest.fixture
-def rng():
-    seed = 98276534394
-    return np.random.default_rng(seed)
-
-
 @pytest.mark.parametrize("dim", [1, 2, 3])
 @pytest.mark.parametrize(
     "mode",
