@@ -18,11 +18,11 @@ requires-python = ">=3.9"
 dependencies = ["numpy", "scipy", "autograd"]
 
 [project.optional-dependencies]
-test = ["pytest", "pytest-xdist"]
+test = ["pytest", "pytest-xdist", "pytest-cov"]
 
 [project.urls]
 Source = "https://github.com/mrbaozi/inverse_design_helpers"
 
 [tool.pytest.ini_options]
-addopts = "-n 4"
+addopts = "-n 4 --cov=inverse_design_helpers --cov-report term-missing"
 xfail_strict = true
