@@ -1,9 +1,10 @@
 import inspect
+from typing import Callable
 
 from autograd import grad, value_and_grad
 
 
-def grad_dict(fun):
+def grad_dict(fun: Callable) -> Callable:
     """Calculates gradient w.r.t. all function arguments and returns them as a dict.
     This is an updated version of `multigrad_dict` from autograd.
     See https://github.com/HIPS/autograd/blob/cecca22f59f4d62dd0df6b54cc57608078ca6df0/autograd/differential_operators.py#L152 for reference.
@@ -64,7 +65,7 @@ def grad_dict(fun):
     return gradfun
 
 
-def value_and_grad_dict(fun):
+def value_and_grad_dict(fun: Callable) -> Callable:
     """Calculates value and gradient w.r.t. all function arguments.
     This is the `value_and_grad` version of autograd's `multigrad_dict`.
     """

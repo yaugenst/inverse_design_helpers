@@ -1,8 +1,8 @@
 import pytest
-from numpy.random import default_rng
+from numpy.random import Generator, default_rng
 
 
 @pytest.fixture(scope="session")
-def rng():
+def rng() -> Generator:
     seed = 98276534394
     return default_rng(seed)
